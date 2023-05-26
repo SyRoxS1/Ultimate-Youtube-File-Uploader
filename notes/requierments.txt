@@ -1,0 +1,4 @@
+pip install image
+pip install tkinter
+pip install os
+pip install opencv-python
