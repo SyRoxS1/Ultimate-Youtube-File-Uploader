@@ -92,6 +92,7 @@ with open(fichiervoulue, 'rb') as file:
                 x += 2
  
                 if count == cap:
+                    start_time = time.time()
                     img = Image.fromarray(pixels)
                     img.save(os.path.join('images', str(nbimg) + '.png'))
                     print('Image number:', nbimg, 'on', totalimg + 1,end='\r')

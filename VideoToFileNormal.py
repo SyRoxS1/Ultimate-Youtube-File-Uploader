@@ -3,6 +3,7 @@ import os
 from tkinter import Tcl
 import numpy as np
 from utils import binary_string_to_file
+import time
 
 image_folder = 'videodebuild'
 video_folder = './videos'
@@ -29,6 +30,8 @@ error = 0
 bin = []
 count=0
 moyenne = 0
+start_time = time.time()
+stop_time = time.time()
 for image in images:
     print("lecture de l'image",count,"sur",len(images))
     count += 1
@@ -36,19 +39,15 @@ for image in images:
     for i in range(0,720,2):
         for j in range(0,1280,2):
             pixel= temp[i, j]
-            for couleur in pixel:
-                moyenne += couleur
+            moyenne += pixel[0]
             pixel= temp[i, j+1]
-            for couleur in pixel:
-                moyenne += couleur
+            moyenne += pixel[0]
             pixel= temp[i+1, j]
-            for couleur in pixel:
-                moyenne += couleur
+            moyenne += pixel[0]
             pixel= temp[i+1, j+1]
-            for couleur in pixel:
-                moyenne += couleur
+            moyenne += pixel[0]
             
-            vraismoyenne = moyenne/12
+            vraismoyenne = moyenne/4
             
             if vraismoyenne < 155 and vraismoyenne > 100:
                 error += 1
@@ -58,10 +57,12 @@ for image in images:
             else:
                 bin.append(1)
             moyenne = 0
-            
+          
 bin = ''.join(map(str,bin))
 b = bin.find('011101110111011101110111001011100111100101101111011101010111010001110101011000100110010100101110011000110110111101101101001011110110110101110010011001100111001001101001011100000110111101101110')
 bin = bin[:b]
+with open("return.txt",'w') as file:
+    file.write(bin)
 
 #bin = "0b" + bin
 binary_string_to_file(bin, final)
