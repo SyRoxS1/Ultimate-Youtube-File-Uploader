@@ -15,16 +15,10 @@ def resetPixels(width, height):
 fichiervoulue = input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : ")
 
 
-
-
-
 file_size_bytes = os.path.getsize(fichiervoulue)
 size_bin_data = file_size_bytes * 8
 print(size_bin_data)
- 
 
-
- 
 img = Image.new('RGB', (1280, 720), 'white')
 pixels = np.array(img, dtype=np.uint8)
  

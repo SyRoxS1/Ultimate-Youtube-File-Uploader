@@ -38,15 +38,25 @@ def get_video_names(channel_url):
             if not next_page_token:
                 break
 
-        # Extract video names
+        # Extract video names and URLs
         video_names = [item['snippet']['title'] for item in playlist_items]
-        return video_names
+        video_urls = [f"https://www.youtube.com/watch?v={item['snippet']['resourceId']['videoId']}" for item in playlist_items]
+        return video_names, video_urls
 
     except HttpError as e:
         print(f'An HTTP error occurred:\n{e}')
 
 # Example usage
 channel_url = 'https://www.youtube.com/channel/UCyj7svz9hL15ciYwrV_wpLg'
-video_names = get_video_names(channel_url)
+video_names, video_urls = get_video_names(channel_url)
+
 for name in video_names:
     print(name)
+
+video_name = input("Enter the video name: ")
+
+if video_name in video_names:
+    index = video_names.index(video_name)
+    print(f"URL for video '{video_name}': {video_urls[index]}")
+else:
+    print("Video not found.")

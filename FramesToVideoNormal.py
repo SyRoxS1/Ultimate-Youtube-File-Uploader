@@ -19,3 +19,9 @@ for image in images:
 
 cv2.destroyAllWindows()
 video.release()
+
+for filename in os.listdir(image_folder):
+    if filename.endswith('.png'):
+        file_path = os.path.join(image_folder, filename)
+        os.remove(file_path)
+        print(f"Deleted: {file_path}",end='\r')
