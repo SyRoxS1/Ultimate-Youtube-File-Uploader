@@ -33,14 +33,14 @@ y = 0
 count = 0
 newcount = 0
 nbimg = 1
-cap = 230400
+cap = 230400 #( 720 * 1280 ) / 4
 newcap = cap
 finish = False
  
 
 totalimg = size_bin_data // cap
 fin = size_bin_data % cap
-valeurimportant = totalimg *  230400 + fin
+valeurimportant = totalimg *  230400 + fin #Total size ammount of 0 and 1 to print
  
 
 
