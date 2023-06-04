@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    PremierChoix = int(input("Vidéo -> Fichier (1)\nFichier -> Vidéo (2) : "))
+    PremierChoix = int(input("Vidéo -> Fichier (1)\nFichier -> Vidéo (2)\nYoutubeAsAcloud (beta)(3): "))
     if PremierChoix == 1:
         import VideoDownloader
         TypeVideo = int(input("Saisire le type de vidéo : (1) : Normale (2) : Insecure : "))
@@ -14,6 +14,15 @@ if __name__ == '__main__':
         if ChoixCompr == 1:
             import MainRisker
             import FramesToVideoNormal
+            import UploadeToYt
         if ChoixCompr == 2:
             import MainBigSafe
             import FramesToVideoSafe
+
+    if PremierChoix == 3:
+        import GetYtVideosName
+        ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2) : "))
+        if ChoixCloud == 1:
+            print(1)
+        if ChoixCloud == 2:
+            print(2)

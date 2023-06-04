@@ -5,14 +5,16 @@ import numpy as np
 from utils import binary_string_to_file
 import time
 
+imageout_folder = 'videodebuild'
 image_folder = 'videodebuild'
 video_folder = './videos'
-imageout_folder = 'videodebuild'
+
+
 
 nomfichier = str('./downloaded/'+ input("Saisir le nom de la vidéo télécharger : ")+'.mp4')
 print(nomfichier)
 
-final = str(input("Saisir le nom du fichier a recréer a partire de la vidéo (ne pas oublier l'extension .zip) : "))
+final = str(input("Saisir le nom du fichier a recréer a partire de la vidéo (ne pas oublier l'extension) : "))
 
 vidcap = cv2.VideoCapture(nomfichier)
 success,image = vidcap.read()
@@ -33,7 +35,7 @@ moyenne = 0
 start_time = time.time()
 stop_time = time.time()
 for image in images:
-    print("lecture de l'image",count,"sur",len(images))
+    print("lecture de l'image",count+1,"sur",len(images),end="\r")
     count += 1
     temp= cv2.imread("./"+image_folder+"/"+image)
     for i in range(0,720,2):
@@ -61,12 +63,17 @@ for image in images:
 bin = ''.join(map(str,bin))
 b = bin.find('011101110111011101110111001011100111100101101111011101010111010001110101011000100110010100101110011000110110111101101101001011110110110101110010011001100111001001101001011100000110111101101110')
 bin = bin[:b]
-with open("return.txt",'w') as file:
-    file.write(bin)
 
-#bin = "0b" + bin
+
+
 binary_string_to_file(bin, final)
 
 
-print("close : ",error)
+print("\nProblems : ",error)
+
 print("Vidéo convertie en fichier réussie !\n")
+for filename in os.listdir(image_folder):
+    if filename.endswith('.png'):
+        file_path = os.path.join(image_folder, filename)
+        os.remove(file_path)
+        print(f"Deleted: {file_path}",end='\r')

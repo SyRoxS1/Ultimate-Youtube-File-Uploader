@@ -1,62 +1,58 @@
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 
-# Set your API key or OAuth 2.0 client credentials
-API_KEY = 'AIzaSyBkmOuQYBLVHHlFlnmzfxgEYqYu0ZhspIk'  # Replace with your API key or set up OAuth 2.0
+# Set up the API key
+api_key = 'AIzaSyBkmOuQYBLVHHlFlnmzfxgEYqYu0ZhspIk'
 
-# Create a YouTube Data API service
-youtube = build('youtube', 'v3', developerKey=API_KEY)
+# Create a YouTube Data API client
+youtube = build('youtube', 'v3', developerKey=api_key)
 
-def get_video_names(channel_url):
-    try:
-        # Extract channel ID from the URL
-        channel_id = channel_url.split('/')[-1]
+def get_channel_videos(channel_url):
+    # Extract the channel ID from the channel URL
+    channel_id = channel_url.split('/')[-1]
 
-        # Retrieve the channel's uploads playlist ID
-        channels_response = youtube.channels().list(
-            part='contentDetails',
-            id=channel_id
-        ).execute()
+    # Retrieve the playlist ID of the channel's uploaded videos
+    channel_response = youtube.channels().list(
+        part='contentDetails',
+        id=channel_id
+    ).execute()
 
-        uploads_playlist_id = channels_response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+    if not channel_response['items']:
+        print('Invalid YouTube channel URL')
+        return
 
-        # Retrieve the videos in the uploads playlist
-        playlist_items = []
-        next_page_token = None
+    uploads_playlist_id = channel_response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
 
-        while True:
-            playlist_response = youtube.playlistItems().list(
-                part='snippet',
-                playlistId=uploads_playlist_id,
-                maxResults=50,  # Adjust as per your requirement
-                pageToken=next_page_token
+    # Retrieve the videos in the channel's uploads playlist
+    videos_response = youtube.playlistItems().list(
+        part='snippet',
+        playlistId=uploads_playlist_id,
+        maxResults=50
+    ).execute()
+
+    videos = videos_response['items']
+    if videos:
+        for video in videos:
+            video_title = video['snippet']['title']
+            video_id = video['snippet']['resourceId']['videoId']
+            video_url = f'https://www.youtube.com/watch?v={video_id}'
+
+            # Retrieve the duration of the video using contentDetails API
+            video_response = youtube.videos().list(
+                part='contentDetails',
+                id=video_id
             ).execute()
 
-            playlist_items.extend(playlist_response['items'])
-            next_page_token = playlist_response.get('nextPageToken')
+            duration = video_response['items'][0]['contentDetails']['duration']
+            
+            print(f'Title: {video_title}')
+            print(f'URL: {video_url}')
+            print(f'Duration: {duration}')
+            print('---')
+    else:
+        print('No videos found in the channel playlist.')
 
-            if not next_page_token:
-                break
+# Prompt the user for a YouTube channel URL
+channel_url = input('Enter a YouTube channel URL: ')
 
-        # Extract video names and URLs
-        video_names = [item['snippet']['title'] for item in playlist_items]
-        video_urls = [f"https://www.youtube.com/watch?v={item['snippet']['resourceId']['videoId']}" for item in playlist_items]
-        return video_names, video_urls
-
-    except HttpError as e:
-        print(f'An HTTP error occurred:\n{e}')
-
-# Example usage
-channel_url = 'https://www.youtube.com/channel/UCyj7svz9hL15ciYwrV_wpLg'
-video_names, video_urls = get_video_names(channel_url)
-
-for name in video_names:
-    print(name)
-
-video_name = input("Enter the video name: ")
-
-if video_name in video_names:
-    index = video_names.index(video_name)
-    print(f"URL for video '{video_name}': {video_urls[index]}")
-else:
-    print("Video not found.")
+# Call the function to fetch and display the video information
+get_channel_videos(channel_url)

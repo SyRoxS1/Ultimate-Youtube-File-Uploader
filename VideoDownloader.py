@@ -1,6 +1,6 @@
 from pytube import YouTube
 
-DOWNLOAD_FOLDER = "./downloaded"
+DOWNLOAD_FOLDER = "./videos"
 url = str(input('Saisir url a convertire en fichier : ' ))
 
 def dl(url):
