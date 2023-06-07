@@ -28,7 +28,7 @@ def get_channel_videos(channel_url):
         playlistId=uploads_playlist_id,
         maxResults=50
     ).execute()
-
+    NbVid = 0
     videos = videos_response['items']
     if videos:
         for video in videos:
@@ -43,11 +43,12 @@ def get_channel_videos(channel_url):
             ).execute()
 
             duration = video_response['items'][0]['contentDetails']['duration']
-            
+            print(f'Number : {NbVid}')
             print(f'Title: {video_title}')
             print(f'URL: {video_url}')
             print(f'Duration: {duration}')
             print('---')
+            NbVid += 1
     else:
         print('No videos found in the channel playlist.')
 
