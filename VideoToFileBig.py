@@ -7,7 +7,7 @@ image_folder = 'videodebuild'
 video_folder = './videos'
 imageout_folder = 'videodebuild'
 
-nomfichier = str('./downloaded/'+ input("Saisir le nom de la vidéo télécharger : ")+'.mp4')
+nomfichier = str('./videos/'+ input("Saisir le nom de la vidéo télécharger : ")+'.mp4')
 print(nomfichier)
 
 final = str(input("Saisir le nom du fichier a recréer a partire de la vidéo (ne pas oublier l'extension .zip) : "))
@@ -40,122 +40,87 @@ for image in images:
         for j in range(0,1260,6):
             count += 1
             pixel= temp[i, j]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
+            moyenne += pixel[0]
             pixel= temp[i, j+1]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
+            moyenne += pixel[0]
             pixel= temp[i, j+2]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
+            moyenne += pixel[0]
             pixel= temp[i, j+3]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
+            moyenne += pixel[0]
             pixel= temp[i, j+4]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
+            moyenne += pixel[0]
             pixel= temp[i, j+5]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
+            moyenne += pixel[0]
 
 
-
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+1, j+1]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+1, j+2]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+1, j+3]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+1, j+4]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+1, j+5]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-
-
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+2, j+1]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+2, j+2]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+2, j+3]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+2, j+4]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+2, j+5]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-
-
-
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+3, j+1]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+3, j+2]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+3, j+3]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+3, j+4]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+3, j+5]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-
-
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+4, j+1]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+4, j+2]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+4, j+3]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+4, j+4]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+4, j+5]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-
-
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+5, j+1]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+5, j+2]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+5, j+3]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+5, j+4]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
-            pixel= temp[i+5, j+5]
-            for couleur in pixel:
-                moyenne = moyenne + couleur
             
-            vraismoyenne = moyenne/108
+            pixel= temp[i+1, j]
+            moyenne += pixel[0]
+            pixel= temp[i+1, j+1]
+            moyenne += pixel[0]
+            pixel= temp[i+1, j+2]
+            moyenne += pixel[0]
+            pixel= temp[i+1, j+3]
+            moyenne += pixel[0]
+            pixel= temp[i+1, j+4]
+            moyenne += pixel[0]
+            pixel= temp[i+1, j+5]
+            moyenne += pixel[0]
+
+            pixel= temp[i+2, j]
+            moyenne += pixel[0]
+            pixel= temp[i+2, j+1]
+            moyenne += pixel[0]
+            pixel= temp[i+2, j+2]
+            moyenne += pixel[0]
+            pixel= temp[i+2, j+3]
+            moyenne += pixel[0]
+            pixel= temp[i+2, j+4]
+            moyenne += pixel[0]
+            pixel= temp[i+2, j+5]
+            moyenne += pixel[0]
+
+
+            pixel= temp[i+3, j]
+            moyenne += pixel[0]
+            pixel= temp[i+3, j+1]
+            moyenne += pixel[0]
+            pixel= temp[i+3, j+2]
+            moyenne += pixel[0]
+            pixel= temp[i+3, j+3]
+            moyenne += pixel[0]
+            pixel= temp[i+3, j+4]
+            moyenne += pixel[0]
+            pixel= temp[i+3, j+5]
+            moyenne += pixel[0]
+
+            pixel= temp[i+4, j]
+            moyenne += pixel[0]
+            pixel= temp[i+4, j+1]
+            moyenne += pixel[0]
+            pixel= temp[i+4, j+2]
+            moyenne += pixel[0]
+            pixel= temp[i+4, j+3]
+            moyenne += pixel[0]
+            pixel= temp[i+4, j+4]
+            moyenne += pixel[0]
+            pixel= temp[i+4, j+5]
+            moyenne += pixel[0]
+
+            pixel= temp[i+5, j]
+            moyenne += pixel[0]
+            pixel= temp[i+5, j+1]
+            moyenne += pixel[0]
+            pixel= temp[i+5, j+2]
+            moyenne += pixel[0]
+            pixel= temp[i+5, j+3]
+            moyenne += pixel[0]
+            pixel= temp[i+5, j+4]
+            moyenne += pixel[0]
+            pixel= temp[i+5, j+5]
+            moyenne += pixel[0]
+            
+            vraismoyenne = moyenne/36
 
             
             if vraismoyenne < 155 and vraismoyenne > 100:
@@ -180,3 +145,9 @@ bytesvar = bytes('P', 'utf-8') + bytesvar[2:]
 with open(final, 'wb') as f:
     f.write(bytesvar)
 print("Vidéo convertie en fichier réussie !\n")
+
+for filename in os.listdir(image_folder):
+    if filename.endswith('.png'):
+        file_path = os.path.join(image_folder, filename)
+        os.remove(file_path)
+        print(f"Deleted: {file_path}",end='\r')

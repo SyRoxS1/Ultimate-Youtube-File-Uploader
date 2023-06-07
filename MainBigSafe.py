@@ -1,50 +1,14 @@
 import codecs
 from PIL import Image
+import numpy as np
+import os
 
 
-def putPixel(x,y):
-    img.putpixel((x,y), (0, 0, 0))
-    img.putpixel((x,y +1), (0, 0, 0))
-    img.putpixel((x,y +2), (0, 0, 0))
-    img.putpixel((x,y +3), (0, 0, 0))
-    img.putpixel((x,y +4), (0, 0, 0))
-    img.putpixel((x,y +5), (0, 0, 0))
+def putPixels(x, y, pixels):
+    pixels[y:y+6, x:x+6] = np.array([0, 0, 0], dtype=np.uint8)
 
-    img.putpixel((x+ 1,y), (0, 0, 0))
-    img.putpixel((x+ 1,y +1), (0, 0, 0))
-    img.putpixel((x+ 1,y +2), (0, 0, 0))
-    img.putpixel((x+ 1,y +3), (0, 0, 0))
-    img.putpixel((x+ 1,y +4), (0, 0, 0))
-    img.putpixel((x+ 1,y +5), (0, 0, 0))
-
-    img.putpixel((x+ 2,y),(0, 0, 0))
-    img.putpixel((x+ 2,y +1), (0, 0, 0))
-    img.putpixel((x+ 2,y +2), (0, 0, 0))
-    img.putpixel((x+ 2,y +3), (0, 0, 0))
-    img.putpixel((x+ 2,y +4), (0, 0, 0))
-    img.putpixel((x+ 2,y +5), (0, 0, 0))
-
-    img.putpixel((x+ 3,y),(0, 0, 0))
-    img.putpixel((x+ 3,y +1), (0, 0, 0))
-    img.putpixel((x+ 3,y +2), (0, 0, 0))
-    img.putpixel((x+ 3,y +3), (0, 0, 0))
-    img.putpixel((x+ 3,y +4), (0, 0, 0))
-    img.putpixel((x+ 3,y +5), (0, 0, 0))
-
-    img.putpixel((x+ 4,y),(0, 0, 0))
-    img.putpixel((x+ 4,y +1), (0, 0, 0))
-    img.putpixel((x+ 4,y +2), (0, 0, 0))
-    img.putpixel((x+ 4,y +3), (0, 0, 0))
-    img.putpixel((x+ 4,y +4), (0, 0, 0))
-    img.putpixel((x+ 4,y +5), (0, 0, 0))
-
-    img.putpixel((x+ 5,y),(0, 0, 0))
-    img.putpixel((x+ 5,y +1), (0, 0, 0))
-    img.putpixel((x+ 5,y +2), (0, 0, 0))
-    img.putpixel((x+ 5,y +3), (0, 0, 0))
-    img.putpixel((x+ 5,y +4), (0, 0, 0))
-    img.putpixel((x+ 5,y +5), (0, 0, 0))
-
+def resetPixels(width, height):
+    return np.ones((height, width, 3), dtype=np.uint8)*255
 
 def bitstring_to_bytes(s):
     return int(s, 2).to_bytes((len(s) + 7) // 8, byteorder='big')
@@ -63,6 +27,8 @@ bin_data = bin(int(hex_data, 16))
 #    f.write(str(bin_data))
 
 img = Image.new('RGB', (1260, 720), 'white')
+pixels = np.array(img, dtype=np.uint8)
+
 x = 0
 y = 0
 count = 0
@@ -88,14 +54,16 @@ while finish != True:
                 while y < 715:
                     while x < 1255:
                         if binbalise[newcount] == str(0):
-                            putPixel(x,y)
+                            putPixels(x, y, pixels)
                         x += 6
                         if x == 1260:
                             x = 0
                             y += 6
                         newcount += 1
                         if newcount == 192:
-                            img.save('imagesbig/'+str(nbimg)+'.png')
+                            img = Image.fromarray(pixels)
+                            img.save(os.path.join('imagesbig', str(nbimg) + '.png'))
+                            pixels = resetPixels(1260,720)
                             print("la fin.")
                             finish = True
                             x = 50000
@@ -106,7 +74,7 @@ while finish != True:
                 break
 
             if str(bin_data[count]) == str(0):
-                putPixel(x,y)
+                putPixels(x, y, pixels)
                 if (count == totalimg *  25200 + fin):
                     print("ERROR PAS BON CA")
             
@@ -116,9 +84,10 @@ while finish != True:
             count += 1
             x = x + 6
             if count==newcap:
-                img.save('imagesbig/'+str(nbimg)+'.png')
-                img = Image.new('RGB', (1260, 720), 'white')
-                print('Image number :',nbimg,'on',totalimg+1)
+                img = Image.fromarray(pixels)
+                img.save(os.path.join('imagesbig', str(nbimg) + '.png'))
+                print('Image number:', nbimg, 'on', totalimg + 1,end='\r')
+                pixels = resetPixels(1260,720)
                 nbimg += 1
                 x = 0
                 y = 0
