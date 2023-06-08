@@ -11,7 +11,7 @@ video_folder = './videos'
 
 
 
-nomfichier = str('./downloaded/'+ input("Saisir le nom de la vidéo télécharger : ")+'.mp4')
+nomfichier = str('./downloaded/'+ input("Saisir le nom de la vidéo télécharger (sans l'extension) : ")+'.mp4')
 print(nomfichier)
 
 final = str(input("Saisir le nom du fichier a recréer a partire de la vidéo (ne pas oublier l'extension) : "))
@@ -32,8 +32,8 @@ error = 0
 bin = []
 count=0
 moyenne = 0
-start_time = time.time()
-stop_time = time.time()
+
+
 for image in images:
     print("lecture de l'image",count+1,"sur",len(images),end="\r")
     count += 1
@@ -58,8 +58,7 @@ for image in images:
                 bin.append(0)
             else:
                 bin.append(1)
-            moyenne = 0
-          
+            moyenne = 0    
 bin = ''.join(map(str,bin))
 b = bin.find('011101110111011101110111001011100111100101101111011101010111010001110101011000100110010100101110011000110110111101101101001011110110110101110010011001100111001001101001011100000110111101101110')
 bin = bin[:b]
