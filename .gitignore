@@ -1,5 +1,7 @@
 client_secret.json
-videos/oui.mp4
+videos/*.mp4
 imagesbig/*.png
 videodebuild/*.png
 *.zip
+*.mp4
+downloaded/*.mp4
