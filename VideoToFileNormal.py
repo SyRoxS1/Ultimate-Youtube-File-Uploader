@@ -3,7 +3,7 @@ import os
 from tkinter import Tcl
 import numpy as np
 from utils import binary_string_to_file
-import time
+
 
 imageout_folder = 'videodebuild'
 image_folder = 'videodebuild'
