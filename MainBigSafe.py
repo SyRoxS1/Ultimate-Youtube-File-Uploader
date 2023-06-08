@@ -13,18 +13,11 @@ def resetPixels(width, height):
 def bitstring_to_bytes(s):
     return int(s, 2).to_bytes((len(s) + 7) // 8, byteorder='big')
 
-fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans le .zip) : \n"))
+fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans oublier l'extension) : \n"))
 
-with open(fichiervoulue+'.zip', 'rb') as f:
-    bytes_data = f.read()
-print(bytes_data[:60])
 
-hex_data = codecs.encode(bytes_data, "hex_codec")
-
-bin_data = bin(int(hex_data, 16))
-
-#with open('returnnormal.txt', 'w') as f:
-#    f.write(str(bin_data))
+file_size_bytes = os.path.getsize(fichiervoulue)
+size_bin_data = file_size_bytes * 8
 
 img = Image.new('RGB', (1260, 720), 'white')
 pixels = np.array(img, dtype=np.uint8)
@@ -37,66 +30,74 @@ cap = 25200
 newcap = cap
 finish = False
 
-nbbit = len(bin_data)
-totalimg = len(bin_data)//cap
-fin = len(bin_data)%cap
+totalimg = size_bin_data // cap
+fin = size_bin_data % cap
 valeurimportant = totalimg *  cap + fin
 newcount = 0
 
 print("Nombre d'images a générer :",totalimg+1)
+with open(fichiervoulue, 'rb') as file:
+    if count == 0:
+        binary_string = file.read(3150)
+        bin_data = ''.join(format(byte, '08b') for byte in binary_string)
+    
+    while finish != True:
+        while y < 715:
+            while x < 1255:
+                if nbimg == totalimg+1 and count == fin:
+                    with open('endbalise.txt','r') as balise:
+                        binbalise = balise.read()
+                    while y < 715:
+                        while x < 1255:
+                            if finish:
+                                x = 100000
+                                y = 100000
+                                break
 
-while finish != True:
-    while y < 715:
-        while x < 1255:
-            if (count == totalimg *  25200 + fin):
-                with open('endbalise.txt','r') as balise:
-                    binbalise = balise.read()
-                while y < 715:
-                    while x < 1255:
-                        if binbalise[newcount] == str(0):
-                            putPixels(x, y, pixels)
-                        x += 6
-                        if x == 1260:
-                            x = 0
-                            y += 6
-                        newcount += 1
-                        if newcount == 192:
-                            img = Image.fromarray(pixels)
-                            img.save(os.path.join('imagesbig', str(nbimg) + '.png'))
-                            pixels = resetPixels(1260,720)
-                            print("la fin.")
-                            finish = True
-                            x = 50000
-                            y = 50000
-                            break
+                            if binbalise[newcount] == '0':
+                                putPixels(x, y, pixels)
+                            x += 6
+                            if x == 1260:
+                                x = 0
+                                y += 6
+                            newcount += 1
+                            if newcount == 192:
+                                img = Image.fromarray(pixels)
+                                img.save(os.path.join('imagesbig', str(nbimg) + '.png'))
+                                pixels = resetPixels(1260,720)
+                                print("la fin.")
+                                finish = True
+                                x = 50000
+                                y = 50000
+                                break
                 
-            if finish == True:
+                if finish == True:
+                    break
+
+                if bin_data[count] == '0':
+                    putPixels(x, y, pixels)
+                    
+                count += 1
+                x = x + 6
+
+                if count == cap:
+                    img = Image.fromarray(pixels)
+                    img.save(os.path.join('imagesbig', str(nbimg) + '.png'))
+                    print('Image number:', nbimg, 'on', totalimg + 1,end='\r')
+                    pixels = resetPixels(1260,720)
+                    nbimg += 1
+                    x = 0
+                    y = 0
+                    count = 0
+                    binary_string = file.read(3150)
+                    bin_data = ''.join(format(byte, '08b') for byte in binary_string)
+                    newcap += cap
+                
+            if finish:
                 break
 
-            if str(bin_data[count]) == str(0):
-                putPixels(x, y, pixels)
-                if (count == totalimg *  25200 + fin):
-                    print("ERROR PAS BON CA")
-            
-            
-
-
-            count += 1
-            x = x + 6
-            if count==newcap:
-                img = Image.fromarray(pixels)
-                img.save(os.path.join('imagesbig', str(nbimg) + '.png'))
-                print('Image number:', nbimg, 'on', totalimg + 1,end='\r')
-                pixels = resetPixels(1260,720)
-                nbimg += 1
-                x = 0
-                y = 0
-                newcap = newcap + cap
-                
-            
-
-        y = y + 6
-        x = 0
+            y = y + 6
+            x = 0
     
             
 

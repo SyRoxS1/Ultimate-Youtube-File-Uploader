@@ -6,7 +6,7 @@ from tkinter import Tcl
 image_folder = 'imagesbig'
 
 
-video_name = str(input('Saisir le nom de la vidéo a enrengistrer : ') + '.mp4')
+video_name = str(input("Saisir le nom de la vidéo a enrengistrer (ne pas préciser l'extension): ") + '.mp4')
 
 images = [img for img in os.listdir(image_folder) if img.endswith(".png")]
 frame = cv2.imread(os.path.join(image_folder, images[0]))
