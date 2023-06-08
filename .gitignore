@@ -1,4 +1,5 @@
 client_secret.json
+*.json
 videos/*.mp4
 imagesbig/*.png
 videodebuild/*.png
