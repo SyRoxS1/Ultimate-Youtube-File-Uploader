@@ -1,12 +1,13 @@
 from googleapiclient.discovery import build
 
-# Set up the API key
-api_key = 'AIzaSyBkmOuQYBLVHHlFlnmzfxgEYqYu0ZhspIk'
 
-# Create a YouTube Data API client
-youtube = build('youtube', 'v3', developerKey=api_key)
 
 def get_channel_videos(channel_url):
+    # Set up the API key
+    api_key = 'AIzaSyBkmOuQYBLVHHlFlnmzfxgEYqYu0ZhspIk'
+
+    # Create a YouTube Data API client
+    youtube = build('youtube', 'v3', developerKey=api_key)
     # Extract the channel ID from the channel URL
     channel_id = channel_url.split('/')[-1]
 
@@ -52,8 +53,4 @@ def get_channel_videos(channel_url):
     else:
         print('No videos found in the channel playlist.')
 
-# Prompt the user for a YouTube channel URL
-channel_url = input('Enter a YouTube channel URL: ')
 
-# Call the function to fetch and display the video information
-get_channel_videos(channel_url)
