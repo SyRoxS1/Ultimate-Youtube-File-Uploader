@@ -1,5 +1,5 @@
 from googleapiclient.discovery import build
-
+import re
 
 
 def get_channel_videos(channel_url):
@@ -29,8 +29,9 @@ def get_channel_videos(channel_url):
         playlistId=uploads_playlist_id,
         maxResults=50
     ).execute()
-    NbVid = 0
     videos = videos_response['items']
+    vidcount = 1
+    urls = {}
     if videos:
         for video in videos:
             video_title = video['snippet']['title']
@@ -43,14 +44,25 @@ def get_channel_videos(channel_url):
                 id=video_id
             ).execute()
 
+            """"
             duration = video_response['items'][0]['contentDetails']['duration']
-            print(f'Number : {NbVid}')
             print(f'Title: {video_title}')
             print(f'URL: {video_url}')
-            print(f'Duration: {duration}')
+            duration = re.findall('\d+',duration)
+            if len(duration) == 1:
+                print('Duration:',duration[0],'sec')
+            else:
+                print('Duration:',duration[0],'min',duration[1],'sec')
+              
             print('---')
-            NbVid += 1
+            
+            """
+            vidcount += 1
+            
+            urls.update({vidcount: video_url})
     else:
         print('No videos found in the channel playlist.')
+
+    return urls
 
 
