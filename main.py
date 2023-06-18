@@ -7,6 +7,7 @@ from VideoToFileNormal import VideoToFileNormal
 from VideoToFileBig import VideoToFileBig
 from GetYtVideosName import get_channel_videos
 from UploadeToYt import upload
+import os
 
 if __name__ == '__main__':
     PremierChoix = int(input("Vidéo -> Fichier (1)\nFichier -> Vidéo (2)\nYoutubeAsAcloud (beta)(3): "))
@@ -69,6 +70,10 @@ if __name__ == '__main__':
                 video_name = fichiervoulue + '.mp4'
                 ImagesBigToVideo(video_name)
                 upload(video_name,video_name,'Compr2','22','','private')
-                
+            for filename in os.listdir('./'):
+                if filename.endswith('.mp4'):
+                    file_path = os.path.join('./', filename)
+                    os.remove(file_path)
+                    print(f"Deleted: {file_path}",end='\r')
         if ChoixCloud == 2:
             print(2)
