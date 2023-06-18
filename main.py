@@ -6,6 +6,7 @@ from VideoDownloader import DLFromYt
 from VideoToFileNormal import VideoToFileNormal
 from VideoToFileBig import VideoToFileBig
 from GetYtVideosName import get_channel_videos
+from UploadeToYt import upload
 
 if __name__ == '__main__':
     PremierChoix = int(input("Vidéo -> Fichier (1)\nFichier -> Vidéo (2)\nYoutubeAsAcloud (beta)(3): "))
@@ -46,10 +47,28 @@ if __name__ == '__main__':
 
     if PremierChoix == 3:
         channel_url = input('Enter a YouTube channel URL: ')
-        get_channel_videos(channel_url)
         
+        urls = get_channel_videos(channel_url)
+        print(urls)
         ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2) : "))
         if ChoixCloud == 1:
-            print(1)
+            ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
+    
+            if ChoixCompr == 1:
+                fichiervoulue = str(input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : "))
+                FileToImages(fichiervoulue)
+                
+                video_name = fichiervoulue + '.mp4'
+                ImagesToVideo(video_name)
+                upload(video_name,video_name,'Compr1','22','','private')
+                
+            if ChoixCompr == 2:
+                fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans oublier l'extension) : \n"))
+                FileToImagesBig(fichiervoulue)
+    
+                video_name = fichiervoulue + '.mp4'
+                ImagesBigToVideo(video_name)
+                upload(video_name,video_name,'Compr2','22','','private')
+                
         if ChoixCloud == 2:
             print(2)
