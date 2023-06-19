@@ -50,8 +50,8 @@ if __name__ == '__main__':
         channel_url = input('Enter a YouTube channel URL: ')
         
         urls = get_channel_videos(channel_url)
-        print(urls)
-        ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2) : "))
+        print(urls["2"][1])
+        ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2), Afficher les fichiers (3) : "))
         if ChoixCloud == 1:
             ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
     
@@ -76,4 +76,14 @@ if __name__ == '__main__':
                     os.remove(file_path)
                     print(f"Deleted: {file_path}",end='\r')
         if ChoixCloud == 2:
-            print(2)
+            for i in range(len(urls)):
+                print(i+1,urls[str(i+1)][1]+'\n')
+            ChoixVid = input("Selectionner le numéro associé au fichier a extraire : ")
+            urlDL = urls[ChoixVid][0]
+            print(urlDL)
+
+            
+        if ChoixCloud == 3:
+            for i in range(len(urls)):
+                print(i+1,urls[str(i+1)][1]+'\n')
+            
