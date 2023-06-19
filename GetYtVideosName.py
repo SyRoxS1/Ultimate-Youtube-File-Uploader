@@ -30,7 +30,7 @@ def get_channel_videos(channel_url):
         maxResults=50
     ).execute()
     videos = videos_response['items']
-    vidcount = 0
+    vidcount = 1
     urls = {}
     if videos:
         for video in videos:
@@ -39,27 +39,24 @@ def get_channel_videos(channel_url):
             video_url = f'https://www.youtube.com/watch?v={video_id}'
 
             # Retrieve the duration of the video using contentDetails API
-            video_response = youtube.videos().list(
+            video_duration_response = youtube.videos().list(
                 part='contentDetails',
                 id=video_id
             ).execute()
+            
 
-            """"
-            duration = video_response['items'][0]['contentDetails']['duration']
-            print(f'Title: {video_title}')
-            print(f'URL: {video_url}')
+            
+            duration = video_duration_response['items'][0]['contentDetails']['duration']
+            description = video['snippet']['description']
             duration = re.findall('\d+',duration)
             if len(duration) == 1:
-                print('Duration:',duration[0],'sec')
+                temps = ('Duration:',duration[0],'sec')
+                urls.update({str(vidcount): [video_url,video_title,temps,description] })
             else:
-                print('Duration:',duration[0],'min',duration[1],'sec')
-              
-            print('---')
-            
-            """
-            
+                temps = ('Duration:',duration[0],'min',duration[1],'sec')
+                urls.update({str(vidcount): [video_url,video_title,temps,description] })
             vidcount += 1
-            urls.update({str(vidcount): [video_url,video_title] })
+            
             
     else:
         print('No videos found in the channel playlist.')
