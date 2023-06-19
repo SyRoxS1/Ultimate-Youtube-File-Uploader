@@ -6,3 +6,4 @@ videodebuild/*.png
 *.zip
 *.mp4
 downloaded/*.mp4
+__pycache__/
