@@ -51,7 +51,6 @@ if __name__ == '__main__':
         channel_url = input('Enter a YouTube channel URL: ')
         
         urls = get_channel_videos(channel_url)
-        print(urls)
         ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2), Afficher les fichiers (3) : "))
         if ChoixCloud == 1:
             ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
