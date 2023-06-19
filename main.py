@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
         TypeVideo = int(input("Saisire le type de vidéo : (1) : Normale (2) : Insecure : "))
         if TypeVideo == 1:
-            nomfichier = str('./downloaded/'+ input("Saisir le nom de la vidéo télécharger (sans l'extension) : ")+'.mp4')
+            nomfichier = str('./videos/'+ input("Saisir le nom de la vidéo télécharger (sans l'extension) : ")+'.mp4')
             print(nomfichier)
             final = str(input("Saisir le nom du fichier a recréer a partire de la vidéo (ne pas oublier l'extension) : "))
             VideoToFileNormal(nomfichier,final)
