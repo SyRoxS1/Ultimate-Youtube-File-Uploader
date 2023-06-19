@@ -30,7 +30,7 @@ def get_channel_videos(channel_url):
         maxResults=50
     ).execute()
     videos = videos_response['items']
-    vidcount = 1
+    vidcount = 0
     urls = {}
     if videos:
         for video in videos:
@@ -57,9 +57,10 @@ def get_channel_videos(channel_url):
             print('---')
             
             """
-            vidcount += 1
             
-            urls.update({vidcount: video_url})
+            vidcount += 1
+            urls.update({str(vidcount): [video_url,video_title] })
+            
     else:
         print('No videos found in the channel playlist.')
 
