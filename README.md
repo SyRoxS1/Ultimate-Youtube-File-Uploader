@@ -1,1 +1,1 @@
-# BBBBBB
+This programs 'abuse' the fact that youtube doesn't have a limitation in uploading videos, so I use it to upload files this is done by creating images containing the data of the the file then with all these images I can create a video then upload it to Youtube 
