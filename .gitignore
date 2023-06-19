@@ -6,4 +6,8 @@ videodebuild/*.png
 *.zip
 *.mp4
 downloaded/*.mp4
+config.ini
+Scripts
+Lib
+pyvenv.cfg
 __pycache__/
