@@ -7,3 +7,6 @@ videodebuild/*.png
 *.mp4
 downloaded/*.mp4
 __pycache__/
+*.avi
+*.pyc
+*.pyo
