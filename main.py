@@ -61,7 +61,7 @@ if __name__ == '__main__':
                 
                 video_name = fichiervoulue + '.mp4'
                 ImagesToVideo(video_name)
-                upload(video_name,video_name[:-4],'Compr1','22','','public')
+                upload(video_name,fichiervoulue,'Compr1','22','','public')
                 
             if ChoixCompr == 2:
                 fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans oublier l'extension) : \n"))
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     
                 video_name = fichiervoulue + '.mp4'
                 ImagesBigToVideo(video_name)
-                upload(video_name,video_name[:-4],'Compr2','22','','public')
+                upload(video_name,fichiervoulue,'Compr2','22','','public')
             for filename in os.listdir('./'):
                 if filename.endswith('.mp4'):
                     file_path = os.path.join('./', filename)
