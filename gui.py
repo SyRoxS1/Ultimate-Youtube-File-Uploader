@@ -72,11 +72,17 @@ lang = lang[LANG]
 root = Tk()
 root.geometry("800x500")
 
+urls = None
+
 def __insert_list__(pos):
+    global urls
+    liste.delete(0, END)
+    liste.insert(0, "WAIT...")
+    liste.update()
+    liste.delete(0,END)
     urls = get_channel_videos(entreeUrl.get().strip())
     for i in range(len(urls)):
-        liste.insert(i+1, urls[str(i+1)][1])
-        print(urls[str(i+1)][1])
+        liste.insert(i+1, str(i+1) + " - " + urls[str(i+1)][1])
     liste.update()
 
 lf = LabelFrame(root, text=lang["setting"])
@@ -84,7 +90,7 @@ lf.place(x=5, y=5, width=400, height=100)
 label = Label(lf, text=lang["url"])
 label.place(x=5, y=5)
 url = StringVar() 
-# url.set("https://www.youtube.com/channel/UCyj7svz9hL15ciYwrV_wpLg")
+url.set("https://www.youtube.com/channel/UCyj7svz9hL15ciYwrV_wpLg")
 entreeUrl = Entry(lf, textvariable=url, width=50)
 entreeUrl.place(x=60, y=5)
 entreeUrl.bind("<FocusOut>", __insert_list__)
@@ -103,43 +109,59 @@ lcbb.current(0)
 
 liste = Listbox(root, width=63, height=10)
 liste.place(x=410, y=13)
-btnextract=Button(root, text=lang["extract"], width=53, command=root.quit)
+
+def extract():
+    indexKey = liste.get(ACTIVE).split(" - ")[0]
+    vid = urls[indexKey]
+    nomVid = vid[1].replace(".","") + ".mp4"
+    pathVid = os.path.join('./videos',nomVid)
+    print(nomVid)
+    DLFromYt(vid[0])
+    if vid[3] == "Compr1":
+        VideoToFileNormal(pathVid, vid[1])
+        os.remove(pathVid)
+        print(f"Deleted: {file_path}",end='\r')
+    elif vid[3] == "Compr2":
+        VideoToFileBig(pathVid, vid[1])
+        os.remove(pathVid)
+        print(f"Deleted: {file_path}",end='\r')
+    else:
+        print("Description invalide")
+
+btnextract=Button(root, text=lang["extract"], width=53, command=extract)
 btnextract.place(x=410, y=180)
-
-
-
 
 
 # channel_url = input('Enter a YouTube channel URL: ')
 
 # urls = get_channel_videos(channel_url)
-# ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2), Afficher les fichiers (3) : "))
-# if ChoixCloud == 1:
-#     ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
+ChoixCloud = int(input("Ajouter des fichiers (1), Extraire des fichiers(2), Afficher les fichiers (3) : "))
+if ChoixCloud == 1:
+    ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
 
-#     if ChoixCompr == 1:
-#         fichiervoulue = str(input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : "))
-#         FileToImages(fichiervoulue)
+    if ChoixCompr == 1:
+        fichiervoulue = str(input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : "))
+        FileToImages(fichiervoulue)
         
-#         video_name = fichiervoulue + '.mp4'
-#         ImagesToVideo(video_name)
-#         upload(video_name,video_name[:-4],'Compr1','22','','public')
+        video_name = fichiervoulue + '.mp4'
+        ImagesToVideo(video_name)
+        upload(video_name,video_name[:-4],'Compr1','22','','public')
         
-#     if ChoixCompr == 2:
-#         fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans oublier l'extension) : \n"))
-#         FileToImagesBig(fichiervoulue)
+    if ChoixCompr == 2:
+        fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans oublier l'extension) : \n"))
+        FileToImagesBig(fichiervoulue)
 
-#         video_name = fichiervoulue + '.mp4'
-#         ImagesBigToVideo(video_name)
-#         upload(video_name,video_name[:-4],'Compr2','22','','public')
-#     for filename in os.listdir('./'):
-#         if filename.endswith('.mp4'):
-#             file_path = os.path.join('./', filename)
-#             os.remove(file_path)
-#             print(f"Deleted: {file_path}",end='\r')
+        video_name = fichiervoulue + '.mp4'
+        ImagesBigToVideo(video_name)
+        upload(video_name,video_name[:-4],'Compr2','22','','public')
+    for filename in os.listdir('./'):
+        if filename.endswith('.mp4'):
+            file_path = os.path.join('./', filename)
+            os.remove(file_path)
+            print(f"Deleted: {file_path}",end='\r')
 # if ChoixCloud == 2:
-#     for i in range(len(urls)):
-#         print(i+1,urls[str(i+1)][1]+'\n')
+#     # for i in range(len(urls)):
+#     #     print(i+1,urls[str(i+1)][1]+'\n')
 #     ChoixVid = input("Selectionner le numéro associé au fichier a extraire : ")
 #     urlDL = urls[ChoixVid][0]
 #     print(urlDL)
@@ -161,7 +183,6 @@ btnextract.place(x=410, y=180)
 #         print(f"Deleted: {file_path}",end='\r')
 #     else:
 #         print("Description invalide")
-
 # if ChoixCloud == 3:
 #     for i in range(len(urls)):
 #         print(i+1,urls[str(i+1)][1]+'\n')
