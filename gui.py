@@ -120,11 +120,11 @@ def extract():
     if vid[3] == "Compr1":
         VideoToFileNormal(pathVid, vid[1])
         os.remove(pathVid)
-        print(f"Deleted: {file_path}",end='\r')
+        print(f"Deleted: {pathVid}",end='\r')
     elif vid[3] == "Compr2":
         VideoToFileBig(pathVid, vid[1])
         os.remove(pathVid)
-        print(f"Deleted: {file_path}",end='\r')
+        print(f"Deleted: {pathVid}",end='\r')
     else:
         print("Description invalide")
 
