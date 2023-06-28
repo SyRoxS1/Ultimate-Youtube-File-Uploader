@@ -15,8 +15,7 @@ if __name__ == '__main__':
     channel_url = "https://www.youtube.com/channel/UCyj7svz9hL15ciYwrV_wpLg"
     path = "grostest/"
     while True:
-        time.sleep(2)
-        print("tour")
+        time.sleep(10)
         files = os.listdir(path)
         if len(files) > 0:
             for file in files:
