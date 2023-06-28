@@ -3,6 +3,7 @@ import httplib2
 import os
 import random
 import time
+import pickle
 
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
@@ -10,7 +11,6 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from google_auth_oauthlib.flow import InstalledAppFlow
-
 
 httplib2.RETRIES = 1
 
@@ -35,19 +35,37 @@ RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 CLIENT_SECRETS_FILE = 'client_secret.json'
 
 # This OAuth 2.0 access scope allows an application to upload files to the
-# authenticated user's YouTube channel, but doesn't allow other types of access.
+# authenticated user's YouTube channel but doesn't allow other types of access.
 SCOPES = ['https://www.googleapis.com/auth/youtube.upload']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
+# Path to store the credentials after initial authentication
+CREDENTIALS_PICKLE_FILE = 'credentials.pickle'
+
 
 # Authorize the request and store authorization credentials.
 def get_authenticated_service():
-    flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
-    credentials = flow.run_local_server()
+    credentials = load_credentials()
+    if not credentials or not credentials.valid:
+        flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
+        credentials = flow.run_local_server()
+        store_credentials(credentials)
     return build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
+
+
+def store_credentials(credentials):
+    with open(CREDENTIALS_PICKLE_FILE, 'wb') as f:
+        pickle.dump(credentials, f)
+
+
+def load_credentials():
+    if os.path.exists(CREDENTIALS_PICKLE_FILE):
+        with open(CREDENTIALS_PICKLE_FILE, 'rb') as f:
+            return pickle.load(f)
+    return None
 
 
 def initialize_upload(youtube, options):
@@ -111,23 +129,24 @@ def resumable_upload(request):
             print('Sleeping %f seconds and then retrying...' % sleep_seconds)
             time.sleep(sleep_seconds)
 
-def upload(file,title, description ,category  ,keywords  ,privacyStatus):
-  youtube = get_authenticated_service()
-  file = file
-  title = title
-  description = description
-  category = category
-  keywords = keywords
-  privacyStatus = privacyStatus
-  options = {
-      'file': file,
-      'title': title,
-      'description': description,
-      'category': category,
-      'keywords': keywords,
-      'privacyStatus': privacyStatus
-  }
-  try:
-      initialize_upload(youtube, options)
-  except HttpError as e:
-      print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
+
+def upload(file, title, description, category, keywords, privacyStatus):
+    youtube = get_authenticated_service()
+    file = file
+    title = title
+    description = description
+    category = category
+    keywords = keywords
+    privacyStatus = privacyStatus
+    options = {
+        'file': file,
+        'title': title,
+        'description': description,
+        'category': category,
+        'keywords': keywords,
+        'privacyStatus': privacyStatus
+    }
+    try:
+        initialize_upload(youtube, options)
+    except HttpError as e:
+        print('An HTTP error %d occurred:\n%s' % (e.resp.status, e.content))
