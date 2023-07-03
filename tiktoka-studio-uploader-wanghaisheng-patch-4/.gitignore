@@ -1,0 +1,16 @@
+/__pycache__/*
+/scikit-image/*
+ytb.db
+geckodriver.log
+main.spec
+/tsup.egg-info/*
+/build/*
+/dist/*
+example.py
+/test-results/*
+screen-recording/*
+/tsup/__pycache__/*
+/cookies/*
+/tests/*
+/datas/*
+/output/*
