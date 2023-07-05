@@ -18,7 +18,6 @@ sys.path.append('tiktoka-studio-uploader-wanghaisheng-patch-4/examples')
 from ytuploadnoapi import upload
 
 if __name__ == '__main__':
-    channel_url = "https://www.youtube.com/channel/UCyj7svz9hL15ciYwrV_wpLg"
     path = "grostest/"
     while True:
         time.sleep(10)
