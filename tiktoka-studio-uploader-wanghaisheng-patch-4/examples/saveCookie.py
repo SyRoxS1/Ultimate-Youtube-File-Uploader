@@ -100,7 +100,7 @@ if __name__ == "__main__":
      ]
 # channelname is your account name or something else
 # for youtube
-    getCookie(browserType='firefox',proxyserver='',channelname='SYSYROCKS',url=sites[0])
+    getCookie(browserType='firefox',proxyserver='',channelname='YOUTUBEUPLOAD',url=sites[0])
 # for tiktok
 # i7SNiSG8V7jND^
 # offloaddogsboner@outlook.com
