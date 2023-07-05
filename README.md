@@ -18,4 +18,16 @@ Step by step guide to use the programme :
 
 3 : Run the requierment file in the folder notes/ by using the command pip install -r requierments.txt ( if they are issues packages not found also do pip install -r requierments2.txt )
 
-4 : Now you need to obtain you'r 
+4 : Now you need to obtain you'r Cookie, you can do that by running the script GetCookie wich is present in the folder tiktoka-studio-uploader-.../examples/getCookies.py (you need to have graphical interface to run it, it will open a browser and ask you to log in to google once you are logged in you need to close the BROWSER (don't stop the script it will do it itself after saving the cookie) the look for the YOUTUBEUPLOAD-cookie.json file wich should apear in the folder before example.
+
+5 : Now that you have the cookie file place it wherever you want but note the path to it and place it the the file ytuploadnoapi.py in the CHANNEL_COOKIES variable, here you can also probide your youtube mail and password wich can solve some cookie issues and 
+
+6 : Now you have to configure the linmain.py file, precise the path to your folder wich the files will automaticaly be converted into a video and also change the video_name variable, you can now start the script in the non graphical environement ( I recommend if you are on linux to use nohup python3 linmain.py command it will set the script to run in background as a process)
+
+7 : Now time to change the main.py file you have to edit the variable local_videos_folder = '' wich is where the videos to upload will be stored after being pulled from the samba server (they will be deleted afterward), then the information of the samba server (if you dont use one for now you will have to edit manually but I will create a branche in the future) server_name = 'IF U USE DNS FOR SAMBA' server_ip = 'IP ADRESSE' server_share = 'THE NAME YOU GAVE YOUR SAMBA SHARE IN /etc/samba/smb.conf' username = 'USERNAME' password = 'PASSWORD'
+
+The variable smbfolder is only usefull if you shared more than the folder in wich the videos are stored using samba, if you shared for example all the files you will put /home/user/files/ (the place where videos are), now if you only shared the folder containing video just put './' in the variable (nothing should also work)
+
+
+
+
