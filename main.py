@@ -25,24 +25,25 @@ if __name__ == '__main__':
     server_share = ''
     username = ''
     password = ''
+    smbfolder = 'FOLDER IN THE SAMBA SERVER WHERE THE FILES ARE'
     while True:
         
         conn = SMBConnection(username, password, '', server_name)
         conn.connect(server_ip)
 
         # List files in the shared folder
-        files = conn.listPath(server_share, '/root/BBBBBB/videos/')
+        files = conn.listPath(server_share, '')
         if len(files) > 1:
             for file in files:
                 print(file.filename)
                 if file.filename.endswith('.mp4'):
                     local_file_path = os.path.join(local_videos_folder, file.filename)
                     with open(local_file_path, 'wb') as f:
-                        conn.retrieveFile(server_share, '/root/BBBBBB/videos/'+file.filename, f)
-                    conn.deleteFiles(server_share, '/root/BBBBBB/videos/'+ file.filename)
+                        conn.retrieveFile(server_share, smbfolder +file.filename, f)
+                    conn.deleteFiles(server_share, smbfolder + file.filename)
         conn.close()
         
-        path = 'videos/'
+        path = local_videos_folder
         files = os.listdir(path)
         if len(files) > 1:
             for file in files:
