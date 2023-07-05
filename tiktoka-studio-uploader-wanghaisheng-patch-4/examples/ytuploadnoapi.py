@@ -9,7 +9,7 @@ def upload(video_name,file,desc):
     profilepath = (
         r"F:\programmation\FILE TO YT HOPEFULLY\BBBBBB\tiktoka-studio-uploader-wanghaisheng-patch-4"
     )
-    CHANNEL_COOKIES = r"F:\programmation\FILE TO YT HOPEFULLY\BBBBBB\tiktoka-studio-uploader-wanghaisheng-patch-4\examples\SYSYROCKS-cookie.json"
+    CHANNEL_COOKIES = r"YOUR COOKIE PATH HERE"
 
     videopath = file
     tags = ["ba,baaa,bababa"]
