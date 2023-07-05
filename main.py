@@ -12,7 +12,7 @@ from VideoDownloader import DLFromYt
 import os
 import time
 
-
+#This script is meant to be run on the machine with a graphical interface
 
 sys.path.append('tiktoka-studio-uploader-wanghaisheng-patch-4/examples')
 from ytuploadnoapi import upload
