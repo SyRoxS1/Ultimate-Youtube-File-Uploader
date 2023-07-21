@@ -20,7 +20,7 @@ Step by step guide to use the programme :
 
 4 : Now you need to obtain you'r Cookie, you can do that by running the script GetCookie wich is present in the folder tiktoka-studio-uploader-.../examples/getCookies.py (you need to have graphical interface to run it, it will open a browser and ask you to log in to google once you are logged in you need to close the BROWSER (don't stop the script it will do it itself after saving the cookie) the look for the YOUTUBEUPLOAD-cookie.json file wich should apear in the folder before example.
 
-5 : Now that you have the cookie file place it wherever you want but note the path to it and place it the the file ytuploadnoapi.py in the CHANNEL_COOKIES variable, here you can also probide your youtube mail and password wich can solve some cookie issues and 
+5 : Now that you have the cookie file place it wherever you want but note the path to it and place it the the file ytuploadnoapi.py in the CHANNEL_COOKIES variable, here you can also provide your youtube mail and password wich can solve some cookie issues and 
 
 6 : Now you have to configure the linmain.py file, precise the path to your folder wich the files will automaticaly be converted into a video and also change the video_name variable, you can now start the script in the non graphical environement ( I recommend if you are on linux to use nohup python3 linmain.py command it will set the script to run in background as a process)
 
