@@ -29,5 +29,5 @@ Step by step guide to use the programme :
 The variable smbfolder is only usefull if you shared more than the folder in wich the videos are stored using samba, if you shared for example all the files you will put /home/user/files/ (the place where videos are), now if you only shared the folder containing video just put './' in the variable (nothing should also work)
 
 
-
+Go check : https://github.com/wanghaisheng/tiktoka-studio-uploader
 
