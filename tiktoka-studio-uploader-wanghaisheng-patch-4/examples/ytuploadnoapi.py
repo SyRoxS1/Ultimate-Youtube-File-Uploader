@@ -9,7 +9,7 @@ def upload(video_name,file,desc):
     profilepath = (
         r"F:\programmation\FILE TO YT HOPEFULLY\BBBBBB\tiktoka-studio-uploader-wanghaisheng-patch-4"
     )
-    CHANNEL_COOKIES = r"F:\programmation\FILE TO YT HOPEFULLY\BBBBBB\tiktoka-studio-uploader-wanghaisheng-patch-4\examples\SYSYROCKS-cookie.json"
+    CHANNEL_COOKIES = r"PLACE THE FULL PATH TO COOKIE HERE"
 
     videopath = file
     tags = ["ba,baaa,bababa"]
@@ -21,7 +21,7 @@ def upload(video_name,file,desc):
     watcheveryuploadstep = False,
     title = video_name
     title = title[:95]
-    username = "mmmmmabanque@gmail.com"
+    username = ""
     password = ""
     description = desc
     invalid_thumbnail = r"../assets/hello.jpg"
