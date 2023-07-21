@@ -1,4 +1,4 @@
-Go check : https://github.com/wanghaisheng/tiktoka-studio-uploader 
+
 
 
 This programs is used  to upload files to youtube, this is done by creating images containing the data of the the file then with all these images I can create a video then upload it to Youtube 
