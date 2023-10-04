@@ -19,4 +19,8 @@ TUTORIAL :
 
 
 Demonstration using Samba Server to retreive the files cf code in ServerSide-Samba-To-Win branch
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pnchBKK11Fg?si=mmaDFOOJmTig83xO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<html>
+  <body>
+       https://www.youtube.com/embed/pnchBKK11Fg?si=mmaDFOOJmTig83xO
+  </body>
+</html>
