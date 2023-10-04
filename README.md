@@ -31,3 +31,7 @@ The variable smbfolder is only usefull if you shared more than the folder in wic
 
 Go check : https://github.com/wanghaisheng/tiktoka-studio-uploader
 
+Demonstration of usage :
+
+https://youtu.be/pnchBKK11Fg
+
