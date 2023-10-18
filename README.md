@@ -16,3 +16,11 @@ TUTORIAL :
 5 : Now that you have the cookie file place it wherever you want but note the path to it and place it the the file ytuploadnoapi.py in the CHANNEL_COOKIES variable, here you can also provide your youtube mail and password wich can solve some cookie issues and 
 
 6 : Now time to change the main.py you just have to change the path variable and put the folder where file to convert are placed (note that once uploaded the file is deleted and the video wich is upload to youtube also)
+
+
+Demonstration using Samba Server to retreive the files cf code in ServerSide-Samba-To-Win branch
+<html>
+  <body>
+      https://youtu.be/pnchBKK11Fg
+  </body>
+</html>
