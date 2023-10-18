@@ -38,4 +38,4 @@ if __name__ == '__main__':
         if len(delscreenrec) > 0:
             for screenrec in delscreenrec:
                 os.remove(os.path.join('screen-recording/', screenrec))
-        time.sleep(5)
+        time.sleep(5) #some delay to avoid overloading the system
