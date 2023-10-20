@@ -1,4 +1,0 @@
-import cv2
-image = cv2.imread("sample.jpg")
-pixel= image[200, 550]
-print pixel
