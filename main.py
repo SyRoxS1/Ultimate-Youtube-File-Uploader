@@ -8,6 +8,7 @@ from VideoToFileBig import VideoToFileBig
 from GetYtVideosName import get_channel_videos
 from UploadeToYt import upload
 from VideoDownloader import DLFromYt
+from RotateForShort import Rotate
 import os
 
 if __name__ == '__main__':
@@ -33,13 +34,22 @@ if __name__ == '__main__':
         ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
     
         if ChoixCompr == 1:
-            fichiervoulue = str(input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : "))
-            FileToImages(fichiervoulue)
-            
-            video_name = fichiervoulue + '.mp4'
-            ImagesToVideo(video_name)
+            ChoixInclinaison = int(input("Horizontal (1) ou Vertical (2) : "))
 
-            #import UploadeToYt
+            if ChoixInclinaison == 1:
+                fichiervoulue = str(input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : "))
+                FileToImages(fichiervoulue)
+                video_name = fichiervoulue + '.mp4'
+                ImagesToVideo(video_name)
+
+            if ChoixInclinaison == 2:
+                fichiervoulue = str(input("Nom du fichier à convertir en vidéo (ne pas oublier l'extension) : "))
+                FileToImages(fichiervoulue)
+                Rotate()
+                video_name = fichiervoulue + '.mp4'
+                ImagesToVideo(video_name)
+
+
         if ChoixCompr == 2:
             fichiervoulue = str(input("Nom du fichier a convertire en vidéo (sans oublier l'extension) : \n"))
             FileToImagesBig(fichiervoulue)
