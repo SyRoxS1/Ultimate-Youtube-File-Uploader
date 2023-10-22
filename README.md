@@ -18,7 +18,7 @@ TUTORIAL :
 6 : Now time to change the main.py you just have to change the path variable and put the folder where file to convert are placed (note that once uploaded the file is deleted and the video wich is upload to youtube also)
 
 
-Demonstration using Samba Server to retreive the files cf code in ServerSide-Samba-To-Win branch
+Demonstration using Samba Server to retreive the files (cf code in ServerSide-Samba-To-Win branch)
 <html>
   <body>
       https://youtu.be/pnchBKK11Fg
