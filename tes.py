@@ -13,8 +13,7 @@ from RotateForShort import Rotate
 from SplitVideo import split
 import os
 import time
-sys.path.append('tiktoka-studio-uploader/examples')
-from ytuploadnoapi3 import upload
+from ytuploadnoapi4 import instantpublish
 
 
 splitedvideos = os.listdir('videos/')
@@ -23,5 +22,5 @@ splitedvideos = splitedvideos[1:]
 
 for vid in splitedvideos:
     print(vid)
-    upload(vid,'videos/'+vid,'Compr1')
+    instantpublish(vid,'videos/'+vid,'Compr1')
     os.remove('videos/'+vid)
