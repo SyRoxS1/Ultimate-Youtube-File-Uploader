@@ -9,13 +9,13 @@ from VideoToFileBig import VideoToFileBig
 from GetYtVideosName import get_channel_videos
 from VideoDownloader import DLFromYt
 from RotateForShort import Rotate
-
+from SplitVideo import split
 import os
 import time
 
 
 
-sys.path.append('tiktoka-studio-uploader-wanghaisheng-patch-4/examples')
+sys.path.append('tiktoka-studio-uploader/examples')
 from ytuploadnoapi import upload
 
 if __name__ == '__main__':
@@ -33,15 +33,19 @@ if __name__ == '__main__':
                     video_name = 'videos/' + file + '.mp4'
                     print(video_name)
                     ImagesToVideo(video_name)
-                    
-                    upload(file,video_name,'Compr1',)
-                    os.remove(actualfile)
+                    split(video_name,file)
+                    splitedvideos = os.listdir('videos/')
                     os.remove(video_name)
+                    for vid in splitedvideos:
+                        upload(vid,vid,'Compr1',)
+                        os.remove('videos/'+vid)
+                    os.remove(actualfile)
+                    
             delscreenrec = os.listdir('screen-recording/')
             if len(delscreenrec) > 0:
                 for screenrec in delscreenrec:
                     os.remove(os.path.join('screen-recording/', screenrec))
-            time.sleep(5) #some delay to avoid overloading the system
+            time.sleep(5) 
 
         else:
             files = os.listdir(path)
@@ -61,4 +65,4 @@ if __name__ == '__main__':
             if len(delscreenrec) > 0:
                 for screenrec in delscreenrec:
                     os.remove(os.path.join('screen-recording/', screenrec))
-            time.sleep(5) #some delay to avoid overloading the system
+            time.sleep(5) 

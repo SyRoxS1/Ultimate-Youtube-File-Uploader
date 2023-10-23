@@ -4,10 +4,6 @@ from tkinter import Tcl
 
 def ImagesToVideo(video_name):    
     image_folder = 'images'
-    
-    
-    
-    
     images = [img for img in os.listdir(image_folder) if img.endswith(".png")]
     frame = cv2.imread(os.path.join(image_folder, images[0]))
     height, width, layers = frame.shape
