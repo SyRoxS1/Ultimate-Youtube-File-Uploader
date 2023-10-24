@@ -12,5 +12,9 @@ __pycache__/*.pyc
 *.pyc
 *.pyo
 *.pickle
-tiktoka-studio-uploader-wanghaisheng-patch-4/*.json
-tiktoka-studio-uploader-wanghaisheng-patch-4/examples/*.json
+*.webm
+*.png
+file.txt
+tes.py
+./__pycache__/*
+tiktoka-studio-uploader-wanghaisheng-patch-4/
