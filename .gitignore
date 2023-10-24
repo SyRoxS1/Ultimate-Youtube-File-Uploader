@@ -11,4 +11,10 @@ __pycache__/*.pyc
 *.avi
 *.pyc
 *.pyo
+*.pickle
+*.webm
+*.png
+file.txt
+tes.py
+./__pycache__/*
 tiktoka-studio-uploader-wanghaisheng-patch-4/
