@@ -14,11 +14,15 @@ from SplitVideo import split
 import os
 import time
 from ytuploadnoapi4 import instantpublish
-
+from tkinter import Tcl
 
 splitedvideos = os.listdir('videos/')
-splitedvideos = splitedvideos[1:]
 
+
+splitedvideos.remove('folder.txt')
+splitedvideos = Tcl().call('lsort', '-dict', splitedvideos)
+
+print(splitedvideos)
 
 for vid in splitedvideos:
     print(vid)

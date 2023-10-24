@@ -12,15 +12,12 @@ from RotateForShort import Rotate
 from SplitVideo import split
 import os
 import time
-
-
-
-sys.path.append('tiktoka-studio-uploader/examples')
-from ytuploadnoapi import upload
+from tkinter import Tcl
+from ytuploadnoapi4 import instantpublish
 
 if __name__ == '__main__':
     short = True
-    path = "TEST"
+    path = "PUT FOLDER WHERE FILES HAVE TO BE UPLOADED TO YT ARE"
     while True:
         if short == True:
             files = os.listdir(path)
@@ -35,9 +32,12 @@ if __name__ == '__main__':
                     ImagesToVideo(video_name)
                     split(video_name,file)
                     splitedvideos = os.listdir('videos/')
-                    os.remove(video_name)
-                    for vid in splitedvideos:
-                        upload(vid,vid,'Compr1',)
+                    splitedvideos.remove('folder.txt')
+                    splitedvideos = Tcl().call('lsort', '-dict', splitedvideos) #sort so the videos are uploaded in the right order
+
+                    for vid in splitedvideos: #upload each part of the video
+                        print(vid)
+                        instantpublish(vid,'videos/'+vid,'Compr1')
                         os.remove('videos/'+vid)
                     os.remove(actualfile)
                     
@@ -57,8 +57,7 @@ if __name__ == '__main__':
                     video_name = 'videos/' + file + '.mp4'
                     print(video_name)
                     ImagesToVideo(video_name)
-                    
-                    upload(file,video_name,'Compr1',)
+                    instantpublish(file,video_name,'Compr1',)
                     os.remove(actualfile)
                     os.remove(video_name)
             delscreenrec = os.listdir('screen-recording/')

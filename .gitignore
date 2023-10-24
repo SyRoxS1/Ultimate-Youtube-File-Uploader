@@ -13,3 +13,6 @@ __pycache__/*.pyc
 *.pyo
 *.pickle
 *.webm
+*.png
+file.txt
+tes.py

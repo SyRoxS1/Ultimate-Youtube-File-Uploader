@@ -5,7 +5,7 @@ import os
 def split(name,file):
     input_video = name
     output_directory = "videos/"
-    segment_duration = 55
+    segment_duration = 58
     video = VideoFileClip(input_video)
     total_duration = video.duration
 
@@ -23,4 +23,4 @@ def split(name,file):
 
     video.reader.close()
     
-#split("videos/TEST.mp4",'TEST.exe')
+#split("videos/output_vertical.mp4",'output_vertical')

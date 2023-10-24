@@ -61,7 +61,7 @@ def instantpublish(video_name,file,desc):
             video_title=video_name,
             video_description=desc,
             thumbnail_local_path=thumbnail_local_path,
-            tags=tags,
+            tags=desc,
             publish_policy=1,
         )
     )
