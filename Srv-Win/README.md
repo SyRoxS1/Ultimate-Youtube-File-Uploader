@@ -1,4 +1,4 @@
-This branch is for automisation of the upload process so convert file into video and then upload the video
+This part of the program is for automation of the upload process so convert file into video and then upload the video
 
 It necessite a graphical interface (i have only tested it on windows so i'm only sure for win os)
 
