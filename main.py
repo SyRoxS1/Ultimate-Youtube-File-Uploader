@@ -17,6 +17,7 @@ import time
 sys.path.append('tiktoka-studio-uploader-wanghaisheng-patch-4/examples')
 from ytuploadnoapi import upload
 from smb.SMBConnection import SMBConnection
+
 if __name__ == '__main__':
     
     local_videos_folder = 'videos/'
