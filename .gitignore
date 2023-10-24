@@ -16,3 +16,4 @@ __pycache__/*.pyc
 *.png
 file.txt
 tes.py
+./__pycache__/*
