@@ -54,7 +54,7 @@ upload = YoutubeUpload(
 today = date.today()
 
 
-def instantpublish(video_name,file,desc):
+def upload(video_name,file,desc):
     asyncio.run(
         upload.upload(
             video_local_path=file,

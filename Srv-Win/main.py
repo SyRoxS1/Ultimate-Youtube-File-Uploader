@@ -13,7 +13,7 @@ from SplitVideo import split
 import os
 import time
 from tkinter import Tcl
-from ytuploadnoapi4 import instantpublish
+from ytuploadnoapi4 import upload
 
 if __name__ == '__main__':
     short = True
@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
                     for vid in splitedvideos: #upload each part of the video
                         print(vid)
-                        instantpublish(vid,'videos/'+vid,'Compr1')
+                        upload(vid,'videos/'+vid,'Compr1')
                         os.remove('videos/'+vid)
                     os.remove(actualfile)
                     
@@ -57,7 +57,7 @@ if __name__ == '__main__':
                     video_name = 'videos/' + file + '.mp4'
                     print(video_name)
                     ImagesToVideo(video_name)
-                    instantpublish(file,video_name,'Compr1',)
+                    upload(file,video_name,'Compr1',)
                     os.remove(actualfile)
                     os.remove(video_name)
             delscreenrec = os.listdir('screen-recording/')
