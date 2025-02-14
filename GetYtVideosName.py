@@ -18,10 +18,10 @@ def get_channel_videos(channel_url):
         part="snippet,contentDetails,statistics",
         forHandle="@sysyrocks"
     )
-    response = request.execute()
+    channel_response = request.execute()
 
 
-    print(response)
+    
     if not channel_response['items']:
         print('Invalid YouTube channel URL')
         return
