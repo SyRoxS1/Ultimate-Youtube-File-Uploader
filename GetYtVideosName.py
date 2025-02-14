@@ -1,4 +1,5 @@
 from googleapiclient.discovery import build
+import googleapiclient.errors
 import re
 
 
@@ -11,12 +12,16 @@ def get_channel_videos(channel_url):
     # Extract the channel ID from the channel URL
     channel_id = channel_url.split('/')[-1]
 
-    # Retrieve the playlist ID of the channel's uploaded videos
-    channel_response = youtube.channels().list(
-        part='contentDetails',
-        id=channel_id
-    ).execute()
+    print(channel_id)
 
+    request = youtube.channels().list(
+        part="snippet,contentDetails,statistics",
+        forHandle="@sysyrocks"
+    )
+    response = request.execute()
+
+
+    print(response)
     if not channel_response['items']:
         print('Invalid YouTube channel URL')
         return
