@@ -18,3 +18,4 @@ file.txt
 tes.py
 ./__pycache__/*
 tiktoka-studio-uploader-wanghaisheng-patch-4/
+.env/
