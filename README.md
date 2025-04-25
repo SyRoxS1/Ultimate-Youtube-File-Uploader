@@ -1,36 +1,70 @@
-This programs is used  to upload files to youtube, this is done by creating images containing the data of the the file then with all these images I can create a video then upload it to Youtube 
+# Ultimate YouTube File Uploader
 
-I did not have the original idea of it I saw it from [DvorakDwarf "Infinite-Storage-Glitch"](https://github.com/DvorakDwarf/Infinite-Storage-Glitch/tree/master/src) but thought it could be improved by having the script show the files on youtube showed as files in the script and i added the fact that you can automaticaly add the video generated to the channel using youtube api ( 6 videos per days :'( , go check other branch for bypass using [tiktoka-studio-uploader](https://github.com/wanghaisheng/tiktoka-studio-uploader) )
+This program is designed to upload files to YouTube by converting them into videos. The process involves creating images containing the file data, compiling these images into a video, and then uploading the video to YouTube.
 
-So the main branch of this programme is really almost the same as DvorakDwarf the only thing I have added is the YoutubeAsCloud feature that allow the user to input a channel url and it list all the videos (using api) and then ask the user wich one he wants to download its not the best yet but it might be upgraded, if you just want to use it to conver video to file or file to video chose option 1 or 2 they should work fine
+## Inspiration
 
-I recomend you check the [WindowsServerSide](https://github.com/SyRoxS1/Ultimate-Youtube-File-Uploader/tree/main/Srv-Win) branch (wich is now merged to main) if you need some automatisation of the programme it allow the user to have a folder in wich every files that is placed is converted into video and then upload to youtube with the data needed to reverse the operation, You can also check the not yet finished GUI branch wich still use the api to gather the information about the channel and displays the file.
+The original idea for this project was inspired by [DvorakDwarf's "Infinite-Storage-Glitch"](https://github.com/DvorakDwarf/Infinite-Storage-Glitch/tree/master/src). However, this project introduces enhancements such as:
 
+- Displaying uploaded files as files within the script.
+- Automating the upload process using the YouTube API (limited to 6 videos per day). For bypassing this limitation, check the [tiktoka-studio-uploader](https://github.com/wanghaisheng/tiktoka-studio-uploader) branch.
 
-Installation :
+## Key Features
 
-[IMPORTANT NOTE] : This code is tested on python 3.10.16, version from python 3.12 break packages installation
+1. **YouTubeAsCloud**: 
+    - Input a channel URL to list all videos on the channel (via the YouTube API).
+    - Select a video to download and convert back into its original file format.
+    - While still a work in progress, this feature is functional and may be improved in the future.
 
-Clone the repository :
+2. **File-to-Video and Video-to-File Conversion**:
+    - Choose options 1 or 2 in the script to convert files to videos or videos back to files.
 
-1 : git clone https://github.com/SyRoxS1/Ultimate-Youtube-File-Uploader.git
+3. **Windows Server-Side Automation**:
+    - Check the [WindowsServerSide branch](https://github.com/SyRoxS1/Ultimate-Youtube-File-Uploader/tree/main/Srv-Win) (now merged into the main branch) for automation.
+    - Automatically convert files placed in a designated folder into videos and upload them to YouTube with the necessary metadata for reverse conversion.
 
-Go into the directory :
+4. **Graphical User Interface (GUI)**:
+    - A GUI branch is under development, which will use the API to display channel information and files in a user-friendly interface.
 
-2 : cd Ultimate-Youtube-File-Uploader
+## Installation
 
-Create a virtual environement
+> **Important Note**: This code has been tested with Python 3.10.16. Python 3.12 and later versions may cause issues with package installation.
 
-3 : python -m venv .env
+### Steps to Install:
 
-Activate it :
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/SyRoxS1/Ultimate-Youtube-File-Uploader.git
+    ```
 
-4 : source .env/bin/activate
+2. Navigate to the project directory:
+    ```bash
+    cd Ultimate-Youtube-File-Uploader
+    ```
 
-Install dependencies :
+3. Create a virtual environment:
+    ```bash
+    python -m venv .env
+    ```
 
-5 : pip install -r notes/requirements.txt
+4. Activate the virtual environment:
+    - On Linux/Mac:
+      ```bash
+      source .env/bin/activate
+      ```
+    - On Windows:
+      ```cmd
+      .env\Scripts\activate
+      ```
 
-Running the programme :
+5. Install the required dependencies:
+    ```bash
+    pip install -r notes/requirements.txt
+    ```
 
-6 : python main.py
+6. Run the program:
+    ```bash
+    python main.py
+    ```
+
+---
