@@ -7,7 +7,7 @@ This program is designed to upload files to YouTube by converting them into vide
 The original idea for this project was inspired by [DvorakDwarf's "Infinite-Storage-Glitch"](https://github.com/DvorakDwarf/Infinite-Storage-Glitch/tree/master/src). However, this project introduces enhancements such as:
 
 - Displaying uploaded files as files within the script.
-- Automating the upload process using the YouTube API (limited to 6 videos per day). For bypassing this limitation, check the [tiktoka-studio-uploader](https://github.com/wanghaisheng/tiktoka-studio-uploader) branch.
+- Automating the upload process using the YouTube API (limited to 6 videos per day). For bypassing this limitation, I used the work on the [tiktoka-studio-uploader](https://github.com/wanghaisheng/tiktoka-studio-uploader) repo.
 
 ## Key Features
 
