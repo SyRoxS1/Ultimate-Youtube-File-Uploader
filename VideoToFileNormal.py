@@ -92,4 +92,3 @@ def VideoToFileNormal(nomfichier,final):
             print(f"Deleted: {file_path}",end='\r')
 
 
-VideoToFileNormal("./videos/DiscordChatExporter win x64 zip.mp4","DiscordChatExporter.zip")
