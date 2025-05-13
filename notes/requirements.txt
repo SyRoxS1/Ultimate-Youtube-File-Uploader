@@ -12,7 +12,7 @@ charset-normalizer==3.1.0
     # via requests
 google-api-core==2.11.1
     # via google-api-python-client
-google-api-python-client==2.161.0
+#google-api-python-client==2.161.0
     # via -r requirements.in
 google-auth==2.20.0
     # via
@@ -76,3 +76,4 @@ urllib3==1.26.16
     # via
     #   google-auth
     #   requests
+google-api-python-client
