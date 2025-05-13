@@ -11,4 +11,3 @@ def DLFromYt(url):
         print("An error has occurred")
     print("Download is completed successfully")
 
-DLFromYt("https://www.youtube.com/watch?v=5xchcveiGe4")
