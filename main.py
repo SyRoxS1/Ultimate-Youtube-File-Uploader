@@ -31,7 +31,7 @@ if __name__ == '__main__':
             VideoToFileBig(nomfichier,final)
         
     if PremierChoix == 2:
-        ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n 1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
+        ChoixCompr = int(input(f"Niveau de sureté voulu ? : \n1 : Faible (plus de risque de corruption mais plus rapide)\n2 : Fort (Meme vitesse mais plus gros fichier vidéo)\n"))
     
         if ChoixCompr == 1:
             ChoixInclinaison = int(input("Horizontal (1) ou Vertical (2) : "))
