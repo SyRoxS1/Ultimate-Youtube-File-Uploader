@@ -2,7 +2,7 @@ import cv2
 import os
 from tkinter import Tcl
 import numpy as np
-from utils import binary_string_to_file
+from utils import binary_string_to_file, append_binary_chunk_to_file
 import time
     
     
@@ -20,9 +20,9 @@ def VideoToFileNormal(nomfichier,final):
     while success:
       cv2.imwrite("./videodebuild/frame%d.png" % count, image)  
       success,image = vidcap.read()
-      print('Read a new frame: ', success)
+      print(f'Read {count} frames...', end='\r')
       count += 1
-    
+    nb_images = count
     images = [img for img in os.listdir(image_folder) if img.endswith(".png")]
     
     images = Tcl().call('lsort', '-dict', images)
@@ -31,7 +31,9 @@ def VideoToFileNormal(nomfichier,final):
     count=0
     moyenne = 0
     
-    
+    #TEMP
+    nb_images = 700
+
     for image in images:
         print("lecture de l'image",count+1,"sur",len(images),end="\r")
         count += 1
@@ -58,14 +60,26 @@ def VideoToFileNormal(nomfichier,final):
                 else:
                     bin.append(1)
                 moyenne = 0
+            
+        if nb_images > 600:
+            if bin != []:
+                if count == nb_images:
+                    bin = ''.join(map(str,bin))
+                    b = bin.find('011101110111011101110111001011100111100101101111011101010111010001110101011000100110010100101110011000110110111101101101001011110110110101110010011001100111001001101001011100000110111101101110')
+                    bin = bin[:b]
+                    append_binary_chunk_to_file(bin, final)
+                else:
+                    append_binary_chunk_to_file(bin, final)
+            bin = []
+
         
     bin = ''.join(map(str,bin))
     b = bin.find('011101110111011101110111001011100111100101101111011101010111010001110101011000100110010100101110011000110110111101101101001011110110110101110010011001100111001001101001011100000110111101101110')
     bin = bin[:b]
     
     
-    
-    binary_string_to_file(bin, final)
+    if nb_images < 600:
+        binary_string_to_file(bin, final)
     
     
     print("\nClose pixels (shouldn't be an issue) : ",error)
@@ -76,3 +90,6 @@ def VideoToFileNormal(nomfichier,final):
             file_path = os.path.join(image_folder, filename)
             os.remove(file_path)
             print(f"Deleted: {file_path}",end='\r')
+
+
+VideoToFileNormal("./videos/DiscordChatExporter win x64 zip.mp4","DiscordChatExporter.zip")

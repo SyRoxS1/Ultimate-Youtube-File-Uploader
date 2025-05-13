@@ -21,7 +21,7 @@ def VideoToFileBig(nomfichier,final):
     while success:
       cv2.imwrite("./videodebuild/frame%d.png" % count, image)     # save frame as JPEG file      
       success,image = vidcap.read()
-      print('Read a new frame: ', success)
+      print(f'Read {count} frames...', end='\r')
       count += 1
     
     
