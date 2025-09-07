@@ -1,5 +1,7 @@
 # Ultimate YouTube File Uploader
 
+It seems like youtube compression got stronger, i recommend using the strong setting for the safety i during testing i got corruption on file using weak safety setting
+
 This program is designed to upload files to YouTube by converting them into videos. The process involves creating images containing the file data, compiling these images into a video, and then uploading the video to YouTube.
 
 ## Inspiration

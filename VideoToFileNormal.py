@@ -75,6 +75,10 @@ def VideoToFileNormal(nomfichier,final):
         
     bin = ''.join(map(str,bin))
     b = bin.find('011101110111011101110111001011100111100101101111011101010111010001110101011000100110010100101110011000110110111101101101001011110110110101110010011001100111001001101001011100000110111101101110')
+    if b != -1:
+        print("Fin de fichier trouvée")
+    else:
+        print("Fin de fichier non trouvée, le fichier peut être corrompu")
     bin = bin[:b]
     
     
@@ -85,6 +89,8 @@ def VideoToFileNormal(nomfichier,final):
     print("\nClose pixels (shouldn't be an issue) : ",error)
     
     print("Vidéo convertie en fichier réussie !\n")
+    
+    # Nettoyage des images
     for filename in os.listdir(image_folder):
         if filename.endswith('.png'):
             file_path = os.path.join(image_folder, filename)
